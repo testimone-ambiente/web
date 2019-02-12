@@ -1,0 +1,31 @@
+{
+  "name": "testimone-ambiente-web",
+  "version": "1.0.0",
+  "description": "Sito web",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/testimone-ambiente/web.git"
+  },
+  "author": "ITIS Fermi",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/testimone-ambiente/web/issues"
+  },
+  "homepage": "https://github.com/testimone-ambiente/web#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "mysql": "^2.16.0",
+    "promise": "^8.0.2",
+    "socket.io": "^2.2.0",
+    "twig": "^1.13.2"
+  }
+}
