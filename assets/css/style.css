@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Staatliches|Work+Sans:200,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Staatliches|Open+Sans:200,300,400,500,700');
 body{
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background: #212121;
   margin: 0;
 }
@@ -17,18 +17,19 @@ body{
   color: white;
 }
 .navbar ul li{
-  font-size: 'Work Sans', sans-serif !important;
   padding-left: 25px;
   padding-right: 25px;
   height: 100%;
   font-size: 1.1em;
-  font-weight: 500;
+  font-weight: 300;
 }
 .section{
   margin: 0;
   width: 100%;
   overflow: hidden;
   position: relative;
+  background-position: center;
+  background-size: cover;
 }
 .section.flexed{
   display: flex;
@@ -38,16 +39,49 @@ body{
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.section.flexed.opaque:after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 1;
+}
 .section.flexed .full{
   position: absolute;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   right: 0;
   height: 100%;
-  background: #212121;
-  width: 60%;
-  margin-right: -160px;
+  width: 45%;
+  margin-right: -130px;
   -webkit-transform: skew(-20deg);
   -moz-transform: skew(-20deg);
   -o-transform: skew(-20deg);
+}
+.section.flexed .full .container{
+  margin-right: 130px;
+}
+.section.flexed .full .container h1{
+  font-weight: bolder;
+  color: #212121;
+  font-size: 5em;
+  padding: 10px;
+  text-align: center;
+  margin: 0;
+}
+.section.flexed .full .container h2{
+  font-weight: lighter;
+  font-size: 2em;
+  text-align: center;
+  margin: 0;
+}
+.section.flexed .full .inner{
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
 }
 .section.flexed .box{
   margin: 30px;
@@ -56,14 +90,21 @@ body{
   margin: 0;
   margin-top: 50px;
   margin-bottom: 50px;
-  margin-left: 150px;
+  margin-left: 180px;
 }
 .section .small{
+  position: relative;
+  z-index: 10000;
   max-width: 500px;
   text-align: justify;
   font-size: 1.2em;
+  color: white;
+  font-weight: 300;
 }
 .section.flexed h1{
+  position: relative;
+  z-index: 10000;
+  color: white;
   font-weight: 400;
   font-size: 3.5em;
 }
@@ -83,7 +124,7 @@ body{
   z-index: -1;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.78);
+  background: rgba(0,0,0,0.8);
   content: "";
   top: 0;
   left: 0;
