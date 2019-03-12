@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title> {{title}} </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div id="demoMap"></div>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script>
+      map = new OpenLayers.Map("demoMap");
+      map.addLayer(new OpenLayers.Layer.OSM());
+      map.zoomToMaxExtent();
+      var lat=44.355;
+      var lon=11.71;
+      var zoom=13;
+    </script>
+  </body>
+</html>

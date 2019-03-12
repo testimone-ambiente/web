@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Staatliches|Open+Sans:200,300,400,500,700');
+
+body{
+  font-family: 'Open Sans', sans-serif;
+  background: #dcdde1;
+  margin: 0;
+}
+.container{
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+.container .content h1{
+  font-size: 6em;
+  letter-spacing: 5px;
+  padding: 30px;
+  font-family: 'Staatliches', sans-serif;
+  color: #2f3640;
+  height: 100px;
+  margin-bottom: -70px;
+  margin-top: -30px;
+  display: flex;
+  overflow: hidden;
+}
+.container .content p{
+  transform: translateY(150px);
+  padding: 30px;
+  font-weight: lighter;
+  font-size: 1.6em;
+  opacity: 0;
+  animation: .7s comein ease-in-out;
+  animation-delay: 1.3s;
+  animation-fill-mode: forwards;
+}
+.container .content p .download-now{
+  
+}
+.flob{
+  margin-top: 190px;
+  animation: burgo 0.5s ease;
+  animation-fill-mode: forwards;
+}
+@keyframes burgo {
+  to{margin-top: 0;}
+}
+@keyframes comein{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,25 @@
+{% extends "layouts/default_register.twig" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+  <div class="section main register">
+    <h1 class="register_title"> Registrazione </h1>
+    <div class="medium">
+      <p><h5 class="description">
+        La registrazione è necessaria per ottenere l'accesso completo alla nostra applicazione.
+      </h5></p>
+    </div>
+      <form id="sign-up">
+        <div class="row"><input type="text" class="item" placeholder="Nome"> <input class="item" type="text" placeholder="Cognome"></div>
+        <div class="row"><input class="item" type="email" placeholder="Email"></div>
+        <div class="row"><input class="item" type="password" placeholder="Password"></div>
+        <div class="row"><button class="item button" value="Register"> Registrati </button></div>
+      </form>
+    <p class="terms">
+      Con la registrazione accetti i seguenti <a href="/terms"> termini di servizio </a>
+    </p>
+  </div>
+
+{% endblock %}

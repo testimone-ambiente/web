@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Mountain Wilderness | {{title}} </title>
+    <link href="/static/css/verification.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h1 id="title" style> Account verificato </h1>
+        <p>
+          Ottimo!<br>
+          Il tuo account è stato verificato correttamente.<br>
+          Puoi ora iniziare ad utilizzare l'app come utente verificato.
+        </p>
+      </div>
+    </div>
+  </body>
+  <script>
+    var swish = async(el, time) => {
+
+  	var split = el[0].innerHTML.trim().split("");
+  	el[0].innerHTML = ""
+  	var f = ""
+  	var delay = 200, inc = 100;
+
+  	if(time && time == "fast")
+  		delay = 0, inc = 50;
+
+  	for(var i = 0, len = split.length; i < len; i++){
+
+  		var c = split[i];
+  		if(c == ' ')
+  			c = '&nbsp;'
+  		f += `<div class="flob" style="animation-delay: ${delay}ms;">${c}</div>`
+  		delay += inc;
+
+  	}
+
+  	el[0].innerHTML = f;
+  	el.addClass('fatto')
+  	el.css('visibility', 'visible');
+
+  }
+
+  swish($("#title"))
+  </script>
+</html>
