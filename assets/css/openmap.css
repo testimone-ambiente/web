@@ -1,0 +1,103 @@
+@import url("/static/css/style.css");
+
+#map{
+  height: 100vh;
+  width: 100%;
+}
+.navbar{
+  background: #212121;
+  padding-bottom: 10px;
+}
+.sider{
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  height: 100vh;
+  width: 30%;
+  background: #f1f2f6;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.sider .content{
+  font-family: 'Roboto', sans-serif !important;
+  margin-top: 40px;
+  padding: 20px;
+}
+.sider .content h1{
+  font-size: 2.8em;
+  font-weight: lighter;
+}
+.sider .content h3{
+  font-size: 1.7em;
+  font-weight: lighter;
+}
+.sider .content form input[type="text"].fancy{
+  width: 100%;
+  padding: 15px 0 15px 0;
+  text-indent: 15px;
+  border-radius: 4px;
+  border: 2px solid #DADADA;
+  margin-bottom: 20px;
+  font-size: 1em;
+  outline: none;
+}
+.sider .content form button.fancy{
+  width: 200px;
+  background: #1e90ff;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 4px;
+  font-size: 1.05em;
+}
+.sider .box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 500px;
+  overflow-x: auto;
+}
+.sider .box .item{
+  position: relative;
+  width: 33%;
+  padding: 15px;
+  border: 2px solid #212121;
+  color: #21221;
+  text-align: center;
+  border-radius: 4px;
+  margin: 5px;
+}
+.sider .box .item:after{
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+  content: "";
+  left: 0;
+  border-radius: 3px;
+  background: #212121;
+  transition: .3s all ease-in-out;
+}
+.sider .box .item:hover:after{
+  width: 100%;
+}
+.sider .box .item:hover{
+  animation: change .3s ease;
+  animation-delay: .20s;
+  animation-fill-mode: forwards;
+}
+@keyframes change {
+  to{color: #fff;}
+}
+.sider .box::-webkit-scrollbar {
+    width: 10px;
+}
+
+.sider .box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sider .box::-webkit-scrollbar-thumb {
+  background-color: #212121;
+}

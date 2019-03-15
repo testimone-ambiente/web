@@ -1,0 +1,52 @@
+{% extends "layouts/default_page.twig" %}
+{% block head %}
+  <link href="/static/css/openmap.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+{% endblock %}
+{% block body %}
+  <div class="sider">
+    <div class="content">
+      <h1> Filtri </h1>
+      <form id="search">
+        <input type="text" class="fancy" id="query" placeholder="Cerca località">
+        <button class="fancy" value="send"> Cerca </button>
+      </form>
+      <h3> Filtra per regione </h3>
+      <div class="box">
+        <div class="item"> Valle d'Aosta </div>
+        <div class="item"> Piemonte </div>
+        <div class="item"> Trentino Alto-Adige </div>
+        <div class="item"> Lombardia </div>
+        <div class="item"> Friuli Venezia-Giulia </div>
+        <div class="item"> Veneto </div>
+        <div class="item"> Liguria </div>
+        <div class="item"> Emilia Romagna </div>
+        <div class="item"> Marche </div>
+        <div class="item"> Umbria </div>
+        <div class="item"> Toscana </div>
+        <div class="item"> Abruzzo </div>
+        <div class="item"> Lazio </div>
+        <div class="item"> Campania </div>
+        <div class="item"> Basilicata </div>
+        <div class="item"> Calabria </div>
+        <div class="item"> Puglia </div>
+        <div class="item"> Molise </div>
+        <div class="item"> Sicilia </div>
+        <div class="item"> Sardegna </div>
+      </div>
+    </div>
+  </div>
+  <div id="map"></div>
+  <script src="/static/js/map.js"></script>
+  <script>
+    $(".item").click((e) => {
+
+      if(!$(e.currentTarget).hasClass("selected"))
+        $(e.currentTarget).css({color: "white", background: "#212121"}).addClass("selected")
+      else
+        $(e.currentTarget).css({color: "#212121", background: "none"}).removeClass("selected")
+
+    })
+  </script>
+{% endblock %}
