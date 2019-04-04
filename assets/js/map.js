@@ -1,6 +1,10 @@
-var map = L.map('map', {zoomControl: false}).setView([41.846828, 7.879184], 6); //important
+/* -- Initial configuration -- */
 
-new L.Control.Zoom({position: 'bottomright'}).addTo(map)
+var map = L.map('map', {zoomControl: false}).setView([41.846828, 7.879184], 6);
+var layer = L.esri.basemapLayer('Topographic').addTo(map);
+new L.Control.Zoom({position: 'topright'}).addTo(map)
+
+/* -- Examples test --*/
 
 setTimeout(() => {
 
@@ -8,6 +12,8 @@ setTimeout(() => {
 	bologna.bindPopup("<b>Bologna</b><br>Capoluogo dell'Emilia-Romagna");
 
 }, 5000)
+
+/* -- Rest API -- */
 
 var socket = io();
 
@@ -20,7 +26,9 @@ socket.on('report', report => {
 
 })
 
-$.get("/api/data/getReports", reports => {
+/* -- Filter test -- */
+
+ $.get("/api/data/getReports", reports => {
 
 	reports.map(report => {
 
@@ -31,22 +39,29 @@ $.get("/api/data/getReports", reports => {
 
 })
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
 
+function filtroRegione(regione){
 
-var circle = L.circle([44.47502, 11.00294], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 10000
-}).addTo(map);
+	$.get("/api/data/getReports", reports => {
 
-//-- map change --
+		reports.map(report => {
 
-var layer = L.esri.basemapLayer('Mapnik').addTo(map);
- var layerLabels;
+			if(report.report_state == regione) {
+				var marker = L.marker([report.report_longitude, report.report_latitude]).addTo(map);
+				marker.bindPopup(`<b>${report.report_state}</b><br>${new Date(report.report_date * 1000)}`)
+			}
+
+		})
+
+	})
+
+}
+
+filtroRegione("Calabria");
+
+/* -- Map selector -- */
+
+var layerLabels;
 
  function setBasemap(basemap) {
      if (layer) {
@@ -75,3 +90,15 @@ var layer = L.esri.basemapLayer('Mapnik').addTo(map);
      var basemap = basemaps.value;
      setBasemap(basemap);
    }
+
+	 /* Geocoding Control */
+
+	var searchControl = L.esri.Geocoding.geosearch({
+		position: "topright",
+		placeholder: "Cerca una località"
+	}).addTo(map);
+  var results = L.layerGroup().addTo(map);
+
+  searchControl.on('results', function(data){
+    results.clearLayers();
+  });
