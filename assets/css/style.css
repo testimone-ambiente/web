@@ -171,8 +171,22 @@ body{
         rgba(0, 0, 0, 0.55),
         rgba(0, 0, 0, 0.55)
       ),
-      url("https://images.wallpaperscraft.com/image/mountains_peaks_clouds_134015_1920x1080.jpg");
+      url("https://images.wallpaperscraft.com/image/mountains_peaks_clouds_134015_1920x1080.jpg");    /* si insomma vanno caricate sul server */
   position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.section.main.login{
+  background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.25)
+      ),
+      url("https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .register_title{
@@ -194,7 +208,7 @@ body{
     width: 100%;
     max-width: 650px;
     margin: 0 auto !important;
-    padding: 0 !important;
+    padding: 10px !important;
 }
 
 .row {
@@ -230,6 +244,18 @@ p.terms a{
   color: white;
 }
 
+.pswd_reset a{
+  color: white;
+  margin-left: 2%;
+  font-size: 0.8em;
+}
+
+/* not homepage */
+
+.container{
+  width: 100%;
+}
+
 
 /* animations */
 @keyframes fadein {
@@ -254,4 +280,76 @@ p.terms a{
     display: none;
   }
 
+}
+
+@media all and (max-width: 1000px){
+
+  .navbar ul {
+    justify-content: center;
+    padding-left: 0;
+}
+
+}
+
+@media all and (max-width: 700px){
+
+.navbar ul {
+    justify-content: center;
+    padding-left: 0;
+    zoom: 65%;
+  }
+
+  .navbar ul li {
+    font-size: 1.35em;
+  }
+
+.register_title {
+    zoom: 75%;
+  }
+
+.description {
+    font-size: 0.8em;
+    zoom: 55%;
+  }
+
+.row .item {
+  zoom: 75%;
+  }
+
+  .pswd_reset a{
+    zoom: 75%;
+  }
+
+#sign-up {
+    padding: 0 !important;
+  }
+
+p.terms {
+    zoom: 75%;
+  }
+
+}
+
+@media all and (max-width: 450px){
+
+.navbar ul {
+    justify-content: center;
+    padding-left: 0;
+    zoom: 58%;
+  }
+
+  .navbar ul li {
+    font-size: 1.1em;
+  }
+
+  .pswd_reset a{
+    zoom: 70%;
+  }
+}
+
+@media all and (max-width: 320px){
+
+.navbar ul {
+    zoom: 52%;
+  }
 }

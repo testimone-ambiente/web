@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,500,700');
+*{
+  font-family: 'Open Sans', sans-serif !important;
+}
+body{
+  margin: 0;
+  background: #212121;
+}
+/* Login related stuff */
+
+.log-container{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.log-container form.login-box{
+  padding: 20px;
+  text-align: center;
+  width: 450px;
+}
+.log-container form.login-box h1{
+  color: white;
+  font-weight: 200;
+  font-size: 3em;
+}
+.log-container form.login-box input{
+  width: 100%;
+  border: none;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  height: 50px;
+  text-indent: 20px;
+  font-size: 1em;
+  background: rgba(255,255,255,0.11);
+  color: white;
+  outline: none;
+}
+.log-container form.login-box button{
+  width: 200px;
+  margin-top: 25px;
+  background: none;
+  color: white;
+  border: none;
+  font-size: .89em;
+  height: 50px;
+  position: relative;
+  border-bottom: 2px solid white;
+}
+.log-container form.login-box button span{
+  position: relative;
+  z-index: 1110010101;
+  mix-blend-mode: difference;
+}
+.log-container form.login-box button:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0%;
+  background: #fff;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition: .2s all ease;
+}
+.log-container form.login-box button:hover:after{
+  height: 100%;
+  bottom: 0;
+}

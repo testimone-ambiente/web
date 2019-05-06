@@ -1,7 +1,74 @@
 {% extends "layouts/report_layout.twig" %}
 {% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+<script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js" integrity="sha512-tyPum7h2h36X52O2gz+Pe8z/3l+Y9S1yEUscbVs5r5aEY5dFmP1WWRY/WLLElnFHa+k1JBQZSCDGwEAnm2IxAQ==" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css" integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ==" crossorigin="">
+<script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js" integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A==" crossorigin=""></script>
+<link href="/assets/css/owl.css" rel="stylesheet" type="text/css">
+<link href="/assets/css/owl.theme.css" rel="stylesheet" type="text/css">
+<script src="/assets/js/owl.js"></script>
 {% endblock %}
-
 {% block body %}
+  <div class="container">
+    <div class="report">
+      <div class="half eh">
+        <h1 id="title"> {{report.report_title}} </h1>
+        <ul>
+          {% if report.user_id %}
 
+            <li> Segnalata da: <a href="/user/{{report.user_id}}"> {{report.report_name}} </a> </li>
+            {% else %}
+            <li> <b>La segnalazione è anonima</b> </li>
+
+          {% endif %}
+          <li> <i class="fas fa-globe"></i> {{report.report_state}} </li>
+          <!--<li> <i class="far fa-building"></i> Milano </li>-->
+          <!--<li> <i class="fas fa-map-pin"></i> Via Verona 18 </li>-->
+          <li> <i class="fas fa-compass"></i>  {{report.report_latitude}}, {{report.report_longitude}} </li>
+          <li> <i class="fas fa-calendar"></i> {{report.report_date}} </li>
+        </ul>
+        <div id="map" style="width: 100%; height: 30vh; margin: 0 auto;"></div>
+      </div>
+      <div class="full">
+
+        {% if images %}
+        <div class="carousel owl-theme" style="width: 100%; height: 30vh;">
+
+          {% for image in images %}
+
+            <img src="/uploads/{{id}}/{{image}}" style="max-width: 100%; max-height: 100%;">
+            <img src="/uploads/{{id}}/{{image}}" style="max-width: 100%; max-height: 100%;">
+
+          {% endfor %}
+
+        </div>
+        {% endif %}
+
+        <script>
+
+          $('.carousel').owlCarousel({
+            loop:true,
+            nav:true,
+            responsive:{
+              1000:{
+                items: 1
+              }
+            }
+          })
+        </script>
+      </div>
+      <div class="full">
+        <p>
+          {{report.report_description}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <script>
+    var map = L.map('map', {zoomControl: false}).setView([{{report.report_latitude}}, {{report.report_longitude}}], 15);
+    var layer = L.esri.basemapLayer('Topographic').addTo(map);
+    var marker = L.marker([{{report.report_latitude}}, {{report.report_longitude}}]).addTo(map);
+    marker.bindPopup("Segnalazione")
+  </script>
 {% endblock %}

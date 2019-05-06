@@ -4,60 +4,86 @@ var map = L.map('map', {zoomControl: false}).setView([41.846828, 7.879184], 6);
 var layer = L.esri.basemapLayer('Topographic').addTo(map);
 new L.Control.Zoom({position: 'topright'}).addTo(map)
 
-/* -- Examples test --*/
-
-setTimeout(() => {
-
-	var bologna = L.marker([44.498955, 11.327591]).addTo(map);
-	bologna.bindPopup("<b>Bologna</b><br>Capoluogo dell'Emilia-Romagna");
-
-}, 5000)
 
 /* -- Rest API -- */
 
 var socket = io();
+var markerStartup = [];
 
 console.log(socket);
 
 socket.on('report', report => {
 
-	var marker = L.marker([report.report_longitude, report.report_latitude]).addTo(map);
-	marker.bindPopup(`<b>${report.report_state}</b><br>${new Date(report.report_date * 1000)}`)
+	console.log(report);
+	var date = new Date(report.report_date * 1000);
+	console.log(report.report_date);
+	var day = date.getDay();
+	var month = date.getMonth();
+	marker = L.marker([report.report_latitude, report.report_longitude]).addTo(map);
+	marker.bindPopup(`<b>${report.report_title}</b><br>${moment.unix(report.report_date).format('DD/MM/YYYY')}<br><a href='/report/${report.report_id}'>Visualizza segnalazione</a>`);
+	markerStartup.push(marker);
+	myMarkers = L.layerGroup(markerStartup).addTo(map);
 
 })
 
 /* -- Filter test -- */
 
- $.get("/api/data/getReports", reports => {
+ /* $.get("/api/data/getReports", reports => {
+
+	 console.log(reports);
 
 	reports.map(report => {
 
-		var marker = L.marker([report.report_longitude, report.report_latitude]).addTo(map);
-		marker.bindPopup(`<b>${report.report_state}</b><br>${new Date(report.report_date * 1000)}`)
+		console.log(report);
+		var marker = L.marker([report.report_latitude, report.report_longitude]).addTo(map);
+		console.log(marker);
+		marker.bindPopup(`<b>${report.report_title}</b><br>${new Date(report.report_date * 1000)}<br><a href='/report/${report.report_id}'>Visualizza segnalazione</a>"`)
 
 	})
 
-})
+}) */ //DO NOT CANCEL
 
+var regionMarkers = {}
 
 function filtroRegione(regione){
+$.get("/api/data/getReports", reports => {
 
+	reports.map(report => {
+
+		map.removeLayer(markerStartup);
+		if(report.report_state == regione || regione == null) {
+			var date = new Date(report.report_date * 1000);
+			console.log(report.report_date);
+			var day = date.getDay();
+			var month = date.getMonth();
+			marker = L.marker([report.report_latitude, report.report_longitude]).addTo(map);
+			marker.bindPopup(`<b>${report.report_title}</b><br>${moment.unix(report.report_date).format('DD/MM/YYYY')}`);
+			regionMarkers[regione].push(marker);
+		}
+
+	})
+})
+}
+
+function removeRegione(regione){
 	$.get("/api/data/getReports", reports => {
 
 		reports.map(report => {
-
-			if(report.report_state == regione) {
-				var marker = L.marker([report.report_longitude, report.report_latitude]).addTo(map);
-				marker.bindPopup(`<b>${report.report_state}</b><br>${new Date(report.report_date * 1000)}`)
-			}
-
+				alert("ciao");
 		})
 
 	})
-
 }
 
-filtroRegione("Calabria");
+$("#Abruzzo").click((done) => {
+
+	if(!$(done.currentTarget).hasClass("selected")){
+		filtroRegione("Abruzzo");
+	}else{
+		removeRegione("Abruzzo");
+	}
+
+})
 
 /* -- Map selector -- */
 

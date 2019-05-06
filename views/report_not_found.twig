@@ -1,0 +1,44 @@
+{% extends "layouts/report_layout.twig" %}
+{% block head %}
+<style>
+  h3{
+    font-weight: lighter;
+  }
+  p{
+    font-weight: lighter;
+  }
+  p a{
+    font-size: 1em;
+    color: #1e90ff;
+    text-decoration: none;
+    border-bottom: 2px solid #1e90ff;
+    font-weight: normal;
+  }
+  @media screen and (max-width: 800px){
+    .container .report .half{
+      width: 100%;
+    }
+  }
+</style>
+{% endblock %}
+{% block body %}
+  <div class="container">
+    <div class="report">
+      <div class="half">
+        <h1 id="title"> Segnalazione non trovata </h1>
+        <h3> Non credo di aver capito bene... </h3>
+        <p>
+
+          Controlla di aver digitato bene l'URL.<br>
+          In caso tu ti sia perso puoi tornare alla <a href="/"> homepage </a> oppure <a href="/search"> cercare una nuova segnalazione </a>
+
+        </p>
+      </div>
+  </div>
+  <script>
+    var map = L.map('map', {zoomControl: false}).setView([{{report.report_latitude}}, {{report.report_longitude}}], 15);
+    var layer = L.esri.basemapLayer('Topographic').addTo(map);
+    var marker = L.marker([{{report.report_latitude}}, {{report.report_longitude}}]).addTo(map);
+    marker.bindPopup("Segnalazione")
+  </script>
+{% endblock %}

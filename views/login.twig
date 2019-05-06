@@ -1,0 +1,20 @@
+{% extends "layouts/default_page.twig" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+  <div class="section main login">
+    <h1 class="register_title"> Login Account </h1>
+      <form id="sign-up">
+        <div class="row"><input class="item" type="email" placeholder="Email"></div>
+        <div class="row"><input class="item" type="password" placeholder="Password"></div>
+        <div class="pswd_reset"><a href="/reset"> Non ricordi la tua password? </a></div>
+        <div class="row"><button class="item button" value="Register"> Login </button></div>
+      </form>
+    <p class="terms">
+      Se non sei ancora registrato, puoi farlo cliccando <a href="/register"> qui </a>
+    </p>
+  </div>
+
+{% endblock %}

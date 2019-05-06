@@ -67,13 +67,14 @@ $(function() {
       drops: 'up',
       buttonClasses: "btn_picker",
       autoUpdateInput: false,
+      autoApply: true,
       locale: {
           cancelLabel: 'Clear'
       }
   });
 
   $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
   });
 
   $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
