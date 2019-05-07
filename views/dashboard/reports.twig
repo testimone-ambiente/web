@@ -1,0 +1,59 @@
+{% extends "dashboard/layout.twig" %}
+
+{% block content %}
+
+  <div class="content">
+      <h1> Segnalazioni </h1>
+      <div class="brief">
+        <p>
+          Qui sotto troverai le ultime 10 segnalazioni (aggiornate in tempo reale).<br>
+          Potrai gestire il totale delle segnalazioni usufruendo del menù a tendina a lato.
+        </p>
+      </div>
+      <div class="fancy-list centered" id="reports">
+        {% for report in ten %}
+
+          <div class="item">
+            <span class="item-label"> {{report.report_title}} </span> - segnalata il {{report.readable_date}} {% if report.user %} da <a href="/dashboard/user/{{report.user_id}}"> {{report.user.name}} {{report.user.surname}} </a> {% else %} <i> segnalazione anonima </i> {% endif %}
+            <a href="/dashboard/report/{{report.report_id}}"><span class="right"> <span>Visualizza <i class="fas fa-arrow-right"></i></span></span></a>
+          </div>
+
+        {% endfor %}
+      </div>
+      <a href="/dashboard/archive"><p style="width: 40%; margin: 0 auto;"><button class="classy" style="width: 100%; cursor: pointer; outline: none;"><span>Archivio segnalazioni in loco</span></button></p></a>
+  </div>
+  <script>
+
+    var socket = io();
+
+    socket.on('new-report', report => {
+
+    if(report.user_id){
+    $(`
+
+    <div class="item" style="display: none">
+      <span class="item-label"> ${report.report_title} </span> - segnalata il ${report.readable_date} da <a href="/dashboard/user/${report.user_id}"> ${report.user.name} ${report.user.surname} </a>
+      <a href="/report/${report.report_id}"><span class="right"> <span>Visualizza <i class="fas fa-arrow-right"></i></span></span></a>
+    </div>
+
+    `).prependTo('#reports').slideDown();
+    }else{
+    $(`
+
+    <div class="item" style="display: none">
+      <span class="item-label"> ${report.report_title} </span> - segnalata il ${report.readable_date} <i>Segnalazione anonima</i>
+      <a href="/report/${report.report_id}"><span class="right"> <span>Visualizza <i class="fas fa-arrow-right"></i></span></span></a>
+    </div>
+
+    `).prependTo('#reports').slideDown();
+    }
+
+      if($("#reports .item").length > 10){
+        $("#reports .item").last().slideUp();
+      }
+
+    })
+
+  </script>
+
+{% endblock %}

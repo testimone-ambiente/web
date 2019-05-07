@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,500,700');
-*{
-  font-family: 'Open Sans', sans-serif !important;
-}
 body{
   margin: 0;
   background: #212121;
+  font-family: 'Open Sans', sans-serif !important;
 }
 /* Login related stuff */
 
@@ -14,6 +12,29 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.delete{
+  position: absolute;
+  z-index: 10000000;
+  left: auto;
+  right: 45px;
+  top: 30px;
+  background: #fff;
+  width: 60px;
+  border-radius: 60px;
+  height: 60px;
+  line-height: 65px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.delete:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  cursor: pointer;
+}
+.delete i{
+  color: #212121;
+  font-family: 2.3em !important;
 }
 .log-container form.login-box{
   padding: 20px;
@@ -37,7 +58,7 @@ body{
   color: white;
   outline: none;
 }
-.log-container form.login-box button{
+.log-container form.login-box button, button.classy{
   width: 200px;
   margin-top: 25px;
   background: none;
@@ -48,12 +69,15 @@ body{
   position: relative;
   border-bottom: 2px solid white;
 }
-.log-container form.login-box button span{
+button.classy.centered{
+  margin: 0 auto !important;
+}
+.log-container form.login-box button span, button.classy span{
   position: relative;
   z-index: 1110010101;
   mix-blend-mode: difference;
 }
-.log-container form.login-box button:after{
+.log-container form.login-box button:after, button.classy:after{
   position: absolute;
   content: "";
   width: 100%;
@@ -61,10 +85,209 @@ body{
   background: #fff;
   left: 0;
   right: 0;
-  top: 0;
+  bottom: 0;
   transition: .2s all ease;
 }
-.log-container form.login-box button:hover:after{
+.log-container form.login-box button:hover:after, button.classy:hover:after{
   height: 100%;
   bottom: 0;
+}
+
+/* enddd */
+
+.dashboard{
+  width: 100%;
+  display: flex;
+}
+.dashboard .sider{
+  padding-left: 30px;
+  height: 100vh;
+  width: 400px;
+  background: #111;
+  display: block;
+}
+.dashboard .sider h1{
+  color: white;
+  font-weight: lighter;
+  font-size: 2em;
+}
+.dashboard .sider h2{
+  color: white;
+  font-weight: 300;
+  background: #111;
+  font-size: 1.2em;
+}
+.dashboard .sider ul{
+  list-style: none;
+  list-style-type: none;
+  padding-left: 0;
+}
+.dashboard .sider ul li{
+  width: calc(100% - 30px);
+  background: #212121;
+  height: 50px;
+  line-height: 50px;
+  text-indent: 10px;
+  position: relative;
+  cursor: pointer;
+}
+ ul li i, ol li i{
+  margin-right: 10px;
+  width: 30px;
+  text-align: center;
+  text-indent: 0 !important;
+}
+.dashboard .sider ul li span{
+  position: relative;
+  color: white;
+  font-weight: lighter;
+  mix-blend-mode: difference;
+  z-index: 10000000;
+}
+.dashboard .sider ul li:after{
+  position: absolute;
+  background: #fff;
+  width: 0;
+  height: 100%;
+  top: 0;
+  content: "";
+  left: 0;
+  bottom: 0;
+  transition: .4s all ease;
+}
+.dashboard .sider ul li:hover:after{
+  width: 100%;
+}
+ul a{
+  color: inherit;
+  text-decoration: none;
+}
+.dashboard .content{
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+}
+.dashboard .content h1{
+  padding-left: 30px;
+  font-size: 4em;
+  font-weight: lighter;
+  color: white;
+}
+.dashboard .content h2{
+  padding-left: 30px;
+  font-size: 2em;
+  font-weight: lighter;
+  color: white;
+}
+.dashboard .content .brief{
+  width: calc(100% - 60px);
+  margin: 0 auto;
+  background: #1a1a1a;
+  font-size: 1em;
+  font-weight: lighter;
+  border-radius: 4px;
+  color: white;
+}
+.dashboard .content .brief span{
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 2.4em;
+  font-weight: 400;
+}
+.dashboard .content .brief p{
+  padding: 20px;
+}
+.dashboard .fancy-list{
+  width: 100%;
+  max-width: 1040px;
+  display: block;
+}
+.dashboard .fancy-list .item{
+  width: 100%;
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+  color: white;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.dashboard .fancy-list .item .item-label{
+  font-weight: bold;
+}
+.dashboard .fancy-list .item a{
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid white;
+}
+.dashboard .fancy-list .item .right{
+  float: right;
+  position: relative;
+  text-align: center;
+  text-indent: 20px;
+}
+.dashboard .fancy-list .item .right:after{
+  width: 0%;
+  height: 100%;
+  background: #fff;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  cursor: pointer;
+  transition: .3s all ease;
+}
+.dashboard .fancy-list .item .right:hover:after{
+  width: 100%;
+}
+.dashboard .fancy-list .item .right i{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.dashboard .fancy-list .item .right span{
+  position: relative;
+  cursor: pointer;
+  z-index: 1000000 !important;
+  mix-blend-mode: difference;
+}
+.dashboard .gallery{
+  width: calc(100% - 60px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  flex-wrap: wrap;
+}
+.dashboard .gallery .image{
+  width: 400px;
+  height: 400px;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.square{
+  background: #fff;
+  color: #212121;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+  text-indent: 0;
+  margin-right: 20px;
+}
+.dashboard .gallery .image img{
+  transform: rotate(90deg);
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.dashboard .gallery .image img:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  cursor: pointer;
+}
+.centered{
+  margin: 0 auto;
 }

@@ -1,11 +1,11 @@
 /* -- Initial configuration -- */
 
-var map = L.map('map', {zoomControl: false}).setView([41.846828, 7.879184], 6);
+var map = L.map('map', {zoomControl: false}).setView([42.846828, 10.579184], 5.5);
 var layer = L.esri.basemapLayer('Topographic').addTo(map);
 new L.Control.Zoom({position: 'topright'}).addTo(map)
 
 
-/* -- Rest API -- */
+/* -- Socket for realtime updates -- */
 
 var socket = io();
 var markerStartup = [];
@@ -26,31 +26,47 @@ socket.on('report', report => {
 
 })
 
-/* -- Filter test -- */
+/* -- GET request for static display -- */
 
- /* $.get("/api/data/getReports", reports => {
+function staticDisplay(){
+
+ $.get("/api/data/getReports", reports => {
 
 	 console.log(reports);
 
 	reports.map(report => {
 
 		console.log(report);
-		var marker = L.marker([report.report_latitude, report.report_longitude]).addTo(map);
-		console.log(marker);
-		marker.bindPopup(`<b>${report.report_title}</b><br>${new Date(report.report_date * 1000)}<br><a href='/report/${report.report_id}'>Visualizza segnalazione</a>"`)
-
+		var date = new Date(report.report_date * 1000);
+		console.log(report.report_date);
+		var day = date.getDay();
+		var month = date.getMonth();
+		marker = L.marker([report.report_latitude, report.report_longitude]).addTo(map);
+		marker.bindPopup(`<b>${report.report_title}</b><br>${moment.unix(report.report_date).format('DD/MM/YYYY')}<br><a href='/report/${report.report_id}'>Visualizza segnalazione</a>`);
+		markerStartup.push(marker);
+		myMarkers = L.layerGroup(markerStartup).addTo(map);
 	})
 
-}) */ //DO NOT CANCEL
+})
 
-var regionMarkers = {}
+}
+
+/* Filter functions */
+
+staticDisplay();
+
+var regionMarkers = {
+	"Abruzzo": [], "Piemonte": [], "Sardegna": [], "Liguria": [], "Emilia-Romagna": [], "Valle D'Aosta": [],
+	"Trentino-Alto Adige": [],  "Lombardia": [], "Campania": [], "Lazio": [], "Veneto": [],  "Sicilia": [], "Calabria": [],
+	"Toscana": [], "Marche": [],  "Umbria": [], "Friuli Venezia Giulia": [], "Molise": [],  "Puglia": [], "Basilicata": []
+}
 
 function filtroRegione(regione){
 $.get("/api/data/getReports", reports => {
 
 	reports.map(report => {
 
-		map.removeLayer(markerStartup);
+		map.removeLayer(myMarkers);
 		if(report.report_state == regione || regione == null) {
 			var date = new Date(report.report_date * 1000);
 			console.log(report.report_date);
@@ -69,21 +85,31 @@ function removeRegione(regione){
 	$.get("/api/data/getReports", reports => {
 
 		reports.map(report => {
-				alert("ciao");
+				regionMarkers[regione].forEach(marker => map.removeLayer(marker));
 		})
 
 	})
 }
 
-$("#Abruzzo").click((done) => {
+/* Filters Actions */
 
-	if(!$(done.currentTarget).hasClass("selected")){
-		filtroRegione("Abruzzo");
-	}else{
-		removeRegione("Abruzzo");
-	}
+$(".item").on('click', e => {
+
+	if(!$(e.currentTarget).hasClass("selected")){
+	 filtroRegione($(e.currentTarget).attr('name'));
+ }else{
+	 removeRegione($(e.currentTarget).attr('name'));
+	 if($(".item.selected").length == 1){
+		 staticDisplay();
+	 }
+ }
 
 })
+
+function restart() {
+	map.redraw();
+}
+
 
 /* -- Map selector -- */
 
@@ -98,12 +124,7 @@ var layerLabels;
      if (layerLabels) {
        map.removeLayer(layerLabels);
      }
-     if (basemap === 'ShadedRelief'
-      || basemap === 'Oceans'
-      || basemap === 'Gray'
-      || basemap === 'DarkGray'
-      || basemap === 'Terrain'
-    ) {
+     if (basemap === 'ShadedRelief') {
        layerLabels = L.esri.basemapLayer(basemap + 'Labels');
        map.addLayer(layerLabels);
      } else if (basemap.includes('Imagery')) {

@@ -1,0 +1,79 @@
+{% extends "dashboard/layout.twig" %}
+{% block head %}
+
+  {{parent()}}
+
+  <link href="/static/css/owl.css" rel="stylesheet" type="text/css">
+  <link href="/static/css/owl.theme.css" rel="stylesheet" type="text/css">
+  <script src="/static/js/owll.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+  <script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js" integrity="sha512-tyPum7h2h36X52O2gz+Pe8z/3l+Y9S1yEUscbVs5r5aEY5dFmP1WWRY/WLLElnFHa+k1JBQZSCDGwEAnm2IxAQ==" crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css" integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ==" crossorigin="">
+  <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js" integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A==" crossorigin=""></script>
+
+{% endblock %}
+{% block content %}
+
+  <div class="content">
+      <div class="delete" id="remove-report" data-id="{{report.report_id}}">
+        <i class="fas fa-trash" style="font-size: 1.5em;"></i>
+      </div>
+      <h1> Titolo segnalazione: {{report.report_title}}</h1>
+        <div id="map" style="width: calc(100% - 60px); margin: 0 auto; border-radius: 4px; height: 300px"></div>
+      <div class="brief">
+        <p>
+          <span> Informazioni </span>
+          </p>
+          <ul style="margin-top: -30px; list-style-type: none;">
+            <li style="display: flex; align-items: center;"> <div class="square"><i class="fas fa-globe"></i></div> {{report.report_state}} </li>
+            <li style="display: flex; align-items: center;"> <div class="square"><i class="fas fa-map-marker"></i></div> {{report.report_address}} </li>
+            <li style="display: flex; align-items: center;"> <div class="square"><i class="fas fa-compass"></i></div> {{report.report_latitude}}, {{report.report_longitude}} </li>
+            <li style="display: flex; align-items: center;"> <div class="square"><i class="fas fa-calendar"></i></div> {{report.readable_date}} </li>
+          </ul>
+          <p>
+          <span> Descrizione della segnalazione: </span>
+          {{report.report_description}}
+          <span> Immagini (se presenti): </span>
+      </p>
+      <div class="gallery">
+        {% for image in images %}
+          <div class="image" onclick="window.open('/uploads/{{report.report_id}}/{{image}}')"><img src="/uploads/{{report.report_id}}/{{image}}"></div>
+        {% endfor %}
+      </div>
+      </div>
+  </div>
+
+  <script>
+
+    $("#remove-report").on('click', e => {
+
+      if(!confirm("Sei sicuro di voler rimuovere questa segnalazione?"))
+        return;
+
+      $.post('/api/dashboard/removeReport', {
+        report_id: "{{report.report_id}}"
+      })
+      .done(data => {
+
+        window.location = "/dashboard/archive"
+
+      })
+
+      .catch(err => {
+
+        alert("C'è stato un problema durante la rimozione della segnalazione")
+
+      })
+
+    })
+
+
+    var map = L.map('map', {zoomControl: false}).setView([{{report.report_latitude}}, {{report.report_longitude}}], 18);
+    var layer = L.esri.basemapLayer('Topographic').addTo(map);
+    var marker = L.marker([{{report.report_latitude}}, {{report.report_longitude}}]).addTo(map);
+    marker.bindPopup("Segnalazione")
+  </script>
+
+{% endblock %}

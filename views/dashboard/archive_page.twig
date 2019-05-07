@@ -1,0 +1,44 @@
+{% extends "dashboard/layout.twig" %}
+
+{% block content %}
+
+  <div class="content">
+      <h1> Archivio segnalazioni </h1>
+      <div class="brief">
+        <p>
+          Qui sotto troverai tutte le segnalazioni fatte sul sistema.<br>
+          Usa le frecce in basso per navigare, oppure cerca con il form qua sotto.
+        </p>
+      </div>
+      <div class="fancy-list centered" id="reports">
+        {% for report in page %}
+
+          <div class="item">
+            <span class="item-label"> {{report.report_title}} </span> - segnalata il {{report.readable_date}} {% if report.user %} da <a href="/dashboard/user/{{report.user_id}}"> {{report.user.name}} {{report.user.surname}} </a> {% else %} <i> segnalazione anonima </i> {% endif %}
+            <a href="/dashboard/report/{{report.report_id}}"><span class="right"> <span>Visualizza <i class="fas fa-arrow-right"></i></span></span></a>
+          </div>
+
+        {% endfor %}
+        <select id="pages" style="width: 200px; height: 30px; margin-top: 20px;">
+        {% for page in pages %}
+          <option value="{{page}}"> Pagina {{page}} </option>
+        {% endfor %}
+        </select>
+        <!--<div class="item">
+          <span class="item-label">Titolo segnalazione</span> - segnalata il 20/03/2000 da <a href="/user"> Emiliano Maccaferri </a>
+          <span class="right"> Agisci <i class="fas fa-arrow-right"></i> </span>
+        </div>-->
+        <script>
+
+          $("#pages").val("{{current}}")
+
+          $("#pages").on('change', e => {
+
+            window.location = `/dashboard/archive/${$(e.currentTarget).val()}`
+
+          })
+        </script>
+      </div>
+  </div>
+
+{% endblock %}

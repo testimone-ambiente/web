@@ -1,9 +1,18 @@
-{% extends "dashboard/layout.twig" %}
-
-{% block body %}
-
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+      <title> Dashboard | {{title}} </title>
+      <link href="/static/css/dashboard.css" type="text/css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    {% endblock %}
+  </head>
+  <body>
   <div class="log-container">
-    <form class="login-box">
+    <form class="login-box" id="login">
       <h1> Esegui il login </h1>
       <input type="text" placeholder="Username" id="username">
       <input type="password" placeholder="Password" id="password">
@@ -11,4 +20,6 @@
     </form>
   </div>
 
-{% endblock %}
+  <script src="/static/js/login.js"></script>
+  </body>
+</html>

@@ -29,7 +29,7 @@
           <li><a href="/" data-balloon="Home" data-balloon-pos="right"> <i class="fas fa-home"> </i></a></li>
           <li><a href="/project" data-balloon="Il Progetto" data-balloon-pos="right"> <i class="fas fa-project-diagram"></i> </a></li>
           <li><a href="/login" data-balloon="Account" data-balloon-pos="right"> <i class="fas fa-sign-in-alt"></i> </a></li>
-          <li><a href="/report" data-balloon="Reports" data-balloon-pos="right"> <i class="fas fa-exclamation-circle"> </i> </a></li>
+          <li><a href="/dashboard" data-balloon="Dashboard" data-balloon-pos="right"> <i class="fas fa-chalkboard-teacher"></i> </a></li>
           <li><i class="fas fa-map-marked-alt"></i></li>
         </ul>
       </ul>
@@ -44,26 +44,26 @@
       <h3> Filtri Aggiuntivi </h3>
       <button class="collapsible"> Regione <i class="chevron"></i></button>
       <div class="box hide long">
-        <div class="item regione" id="Aosta"> Valle d'Aosta </div>
-        <div class="item regione" id="Piemonte"> Piemonte </div>
-        <div class="item regione" id="Trentino"> Trentino </div>
-        <div class="item regione" id="Lombardia"> Lombardia </div>
-        <div class="item regione" id="Friuli"> Friuli </div>
-        <div class="item regione" id="Veneto"> Veneto </div>
-        <div class="item regione" id="Liguria"> Liguria </div>
-        <div class="item regione" id="Emilia"> Emilia Romagna </div>
-        <div class="item regione" id="Marche"> Marche </div>
-        <div class="item regione" id="Umbria"> Umbria </div>
-        <div class="item regione" id="Toscana"> Toscana </div>
-        <div class="item regione" id="Abruzzo"> Abruzzo </div>
-        <div class="item regione" id="Lazio"> Lazio </div>
-        <div class="item regione" id="Campania"> Campania </div>
-        <div class="item regione" id="Basilicata"> Basilicata </div>
-        <div class="item regione" id="Calabria"> Calabria </div>
-        <div class="item regione" id="Puglia"> Puglia </div>
-        <div class="item regione" id="Molise"> Molise </div>
-        <div class="item regione" id="Sicilia"> Sicilia </div>
-        <div class="item regione" id="Sardegna"> Sardegna </div>
+        <div class="item regione" name="Valle D'Aosta"> Valle d'Aosta </div>
+        <div class="item regione" name="Piemonte"> Piemonte </div>
+        <div class="item regione" name="Trentino-Alto Adige"> Trentino </div>
+        <div class="item regione" name="Lombardia"> Lombardia </div>
+        <div class="item regione" name="Friuli Venezia Giulia"> Friuli </div>
+        <div class="item regione" name="Veneto"> Veneto </div>
+        <div class="item regione" name="Liguria"> Liguria </div>
+        <div class="item regione" name="Emilia-Romagna"> Emilia Romagna </div>
+        <div class="item regione" name="Marche"> Marche </div>
+        <div class="item regione" name="Umbria"> Umbria </div>
+        <div class="item regione" name="Toscana"> Toscana </div>
+        <div class="item regione" name="Abruzzo"> Abruzzo </div>
+        <div class="item regione" name="Lazio"> Lazio </div>
+        <div class="item regione" name="Campania"> Campania </div>
+        <div class="item regione" name="Basilicata"> Basilicata </div>
+        <div class="item regione" name="Calabria"> Calabria </div>
+        <div class="item regione" name="Puglia"> Puglia </div>
+        <div class="item regione" name="Molise"> Molise </div>
+        <div class="item regione" name="Sicilia"> Sicilia </div>
+        <div class="item regione" name="Sardegna"> Sardegna </div>
       </div>
       <button class="collapsible"> Indirizzo <i class="chevron"></i></button>
       <div class="box hide">
@@ -79,16 +79,12 @@
           <button class="fancy" value="send"> Cerca </button>
         </form>
       </div>
-      <button class="collapsible"> Altitudine <i class="chevron"></i></button>
-      <div class="box hide short">
-        <form id="search-height" style="text-align: center; margin-top: 16px;">
-          <input type="text" class="fancy" name="heightfilter" placeholder="Cerca altezza segnalazione">
-          <button class="fancy" value="send"> Cerca </button>
-        </form>
-      </div>
+      <form id="reset-filters" style="text-align: center; margin-top: 16px;">
+        <button class="fancy" onclick="restart()"> Resetta Filtri </button>
+      </form>
     </div>
     <div style="text-align: center">
-      <h6 style="font-weight: lighter; margin: 0;"> Ver. Beta 0.5.3 </h6>
+      <h6 style="font-weight: lighter; margin: 0;"> Ver. Beta 1.5.7 </h6>
     </div>
   </div>
   <div id="map"></div>

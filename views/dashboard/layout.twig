@@ -6,12 +6,29 @@
       <link href="/static/css/dashboard.css" type="text/css" rel="stylesheet">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+      <script src="/socket.io/socket.io.js"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     {% endblock %}
   </head>
   <body>
-    {% block body %}
-      
-    {% endblock %}
+
+    <div class="dashboard">
+      {% block sider %}
+      <div class="sider">
+        <h1> Benvenuto/a </h1>
+        <h2> Utente: {{user.username}} </h2>
+        <ul>
+          <a href="/dashboard"><li> <span><i class="fas fa-home"></i> Homepage</span> </li></a>
+          <a href="/dashboard/reports"><li> <span><i class="fas fa-arrow-right"></i> Segnalazioni </span> </li></a>
+          <a href="/dashboard/generic"><li> <span><i class="fas fa-exclamation"></i> Segnalazioni generiche </span> </li></a>
+          <a href="/dashboard/settings"><li> <span><i class="fas fa-cog"></i> Impostazioni </span> </li></a>
+          <a href="#" id="logout"><li> <span><i class="fas fa-power-off"></i> Logout </span> </li></a>
+        </ul>
+      </div>
+      {% endblock %}
+
+      {% block content %} {% endblock %}
+    </div>
+
   </body>
 </html>
