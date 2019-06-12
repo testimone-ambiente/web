@@ -1,105 +1,113 @@
 <!DOCTYPE HTML>
 {% block head %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
-  <link href="/static/css/openmap.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
-  <script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js" integrity="sha512-tyPum7h2h36X52O2gz+Pe8z/3l+Y9S1yEUscbVs5r5aEY5dFmP1WWRY/WLLElnFHa+k1JBQZSCDGwEAnm2IxAQ==" crossorigin=""></script>
-  <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css" integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ==" crossorigin="">
-  <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js" integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A==" crossorigin=""></script>
-  <link href="/static/css/style.css" rel="stylesheet" type="text/css">
-  <script src="/static/js/visible.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/static/js/moment.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
+<link href="/static/css/openmap.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+<script src="https://unpkg.com/esri-leaflet@2.2.4/dist/esri-leaflet.js" integrity="sha512-tyPum7h2h36X52O2gz+Pe8z/3l+Y9S1yEUscbVs5r5aEY5dFmP1WWRY/WLLElnFHa+k1JBQZSCDGwEAnm2IxAQ==" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css" integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ==" crossorigin="">
+<script src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js" integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A==" crossorigin=""></script>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<script src="/static/js/visible.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/js/moment.js"></script>
 {% endblock %}
 {% block body %}
 <div class="navbar-vertical">
-      <ul>
+    <ul>
         <li><span id="toggle-btn" onclick="openNav()">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </span></li>
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </span></li>
         <ul>
-          <li><a href="/" data-balloon="Home" data-balloon-pos="right"> <i class="fas fa-home"> </i></a></li>
-          <li><a href="/project" data-balloon="Il Progetto" data-balloon-pos="right"> <i class="fas fa-project-diagram"></i> </a></li>
-          <li><a href="/login" data-balloon="Account" data-balloon-pos="right"> <i class="fas fa-sign-in-alt"></i> </a></li>
-          <li><a href="/dashboard" data-balloon="Dashboard" data-balloon-pos="right"> <i class="fas fa-chalkboard-teacher"></i> </a></li>
-          <li><i class="fas fa-map-marked-alt"></i></li>
+            <li><a href="/" data-balloon="Home" data-balloon-pos="right"> <i class="fas fa-home"> </i></a></li>
+            <li><a href="/project" data-balloon="Il Progetto" data-balloon-pos="right"> <i class="fas fa-project-diagram"></i> </a></li>
+            <li><a href="/login" data-balloon="Account" data-balloon-pos="right"> <i class="fas fa-sign-in-alt"></i> </a></li>
+            <li><a href="/dashboard" data-balloon="Dashboard" data-balloon-pos="right"> <i class="fas fa-chalkboard-teacher"></i> </a></li>
+            <li><a href="/map" data-balloon="Mappa" data-balloon-pos="right"><i class="fas fa-map-marked-alt"> </a></i></li>
         </ul>
-      </ul>
-    </div>
-  <div class="sider" id="mySider">
+    </ul>
+</div>
+<div class="sider" id="mySider">
     <div class="content" id="myContent">
-      <h1> Filtri Segnalazioni </h1>
-      <form id="search-title">
-        <input type="text" class="fancy" id="query" placeholder="Cerca titolo segnalazione">
-        <button class="fancy" value="send"> Cerca </button>
-      </form>
-      <h3> Filtri Aggiuntivi </h3>
-      <button class="collapsible"> Regione <i class="chevron"></i></button>
-      <div class="box hide long">
-        <div class="item regione" name="Valle D'Aosta"> Valle d'Aosta </div>
-        <div class="item regione" name="Piemonte"> Piemonte </div>
-        <div class="item regione" name="Trentino-Alto Adige"> Trentino </div>
-        <div class="item regione" name="Lombardia"> Lombardia </div>
-        <div class="item regione" name="Friuli Venezia Giulia"> Friuli </div>
-        <div class="item regione" name="Veneto"> Veneto </div>
-        <div class="item regione" name="Liguria"> Liguria </div>
-        <div class="item regione" name="Emilia-Romagna"> Emilia Romagna </div>
-        <div class="item regione" name="Marche"> Marche </div>
-        <div class="item regione" name="Umbria"> Umbria </div>
-        <div class="item regione" name="Toscana"> Toscana </div>
-        <div class="item regione" name="Abruzzo"> Abruzzo </div>
-        <div class="item regione" name="Lazio"> Lazio </div>
-        <div class="item regione" name="Campania"> Campania </div>
-        <div class="item regione" name="Basilicata"> Basilicata </div>
-        <div class="item regione" name="Calabria"> Calabria </div>
-        <div class="item regione" name="Puglia"> Puglia </div>
-        <div class="item regione" name="Molise"> Molise </div>
-        <div class="item regione" name="Sicilia"> Sicilia </div>
-        <div class="item regione" name="Sardegna"> Sardegna </div>
-      </div>
-      <button class="collapsible"> Indirizzo <i class="chevron"></i></button>
-      <div class="box hide">
-        <form id="search-street" style="text-align: center; margin-top: 16px;">
-          <input class="fancy" type="text" name="streetfilter" placeholder="Cerca indirizzo segnalazione" />
-          <button class="fancy" value="send"> Cerca </button>
+        <h1> Filtri Segnalazioni </h1>
+        <form id="search">
+            <input type="text" class="fancy" id="search-title" placeholder="Cerca titolo segnalazione">
+            <button type="button" class="fancy" value="send" id="title-button" onclick="titleSearch()">
+              <span> Cerca </span>
+            </button>
         </form>
-      </div>
-      <button class="collapsible"> Data <i class="chevron"></i></button>
-      <div class="box hide">
-        <form id="search-date" style="text-align: center; margin-top: 16px;">
-          <input class="fancy date" type="text" name="datefilter" value placeholder="gg/mm/AAAA - gg/mm/AAAA" />
-          <button class="fancy" value="send"> Cerca </button>
+        <h3> Filtri Aggiuntivi </h3>
+        <button class="collapsible"> Regione <i class="chevron"></i></button>
+        <div class="box hide long">
+            <div class="item regione" name="Valle d'Aosta"> Valle d'Aosta </div>
+            <div class="item regione" name="Piemonte"> Piemonte </div>
+            <div class="item regione" name="Trentino"> Trentino </div>
+            <div class="item regione" name="Lombardia"> Lombardia </div>
+            <div class="item regione" name="Friuli"> Friuli </div>
+            <div class="item regione" name="Veneto"> Veneto </div>
+            <div class="item regione" name="Liguria"> Liguria </div>
+            <div class="item regione" name="Emilia-Romagna"> Emilia Romagna </div>
+            <div class="item regione" name="Marche"> Marche </div>
+            <div class="item regione" name="Umbria"> Umbria </div>
+            <div class="item regione" name="Toscana"> Toscana </div>
+            <div class="item regione" name="Abruzzo"> Abruzzo </div>
+            <div class="item regione" name="Lazio"> Lazio </div>
+            <div class="item regione" name="Campania"> Campania </div>
+            <div class="item regione" name="Basilicata"> Basilicata </div>
+            <div class="item regione" name="Calabria"> Calabria </div>
+            <div class="item regione" name="Puglia"> Puglia </div>
+            <div class="item regione" name="Molise"> Molise </div>
+            <div class="item regione" name="Sicilia"> Sicilia </div>
+            <div class="item regione" name="Sardegna"> Sardegna </div>
+        </div>
+        <button class="collapsible"> Indirizzo <i class="chevron"></i></button>
+        <div class="box hide">
+            <form id="search-street" style="text-align: center; margin-top: 10px;">
+                <input class="fancy" type="text" name="streetfilter" id="search-address" placeholder="Cerca indirizzo segnalazione" />
+                <button type="button" class="fancy" id="search-button" value="send" onclick="addressSearch()">
+                  <span> Cerca </span>
+                </button>
+            </form>
+        </div>
+        <button class="collapsible"> Data <i class="chevron"></i></button>
+        <div class="box hide">
+            <form id="date-search" style="text-align: center; margin-top: 10px;">
+                <input class="fancy date" type="text" id="search-date" name="datefilter" value placeholder="Giorno/Mese/Anno" />
+                <button type="button" class="fancy" value="send" onclick="dateSearch()">
+                  <span> Cerca </span>
+                </button>
+            </form>
+        </div>
+        <form id="reset-filters" style="text-align: center; margin-top: 10px;">
+            <button type="button" class="fancy" onclick="little_filter.fullReset()">
+            <span> Azzera Filtri </span>
+          </button>
         </form>
-      </div>
-      <form id="reset-filters" style="text-align: center; margin-top: 16px;">
-        <button class="fancy" onclick="restart()"> Resetta Filtri </button>
-      </form>
     </div>
     <div style="text-align: center">
-      <h6 style="font-weight: lighter; margin: 0;"> Ver. Beta 1.5.7 </h6>
+        <h6 style="font-weight: lighter; margin: 0; color: #fff;"> Ver. 1.6.0 </h6>
     </div>
-  </div>
-  <div id="map"></div>
-  <div id="basemaps-wrapper" class="leaflet-bar">
-  <select name="basemaps" id="basemaps" onChange="changeBasemap(basemaps)">
-    <option value="Topographic"> Topografica </option>
-    <option value="ImageryFirefly"> Satellite </option>
-    <option value="Streets">Streets</option>
-    <option value="NationalGeographic"> National Geographic </option>
-    <option value="ShadedRelief"> Rilievi </option>
-  </select>
 </div>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <script src="/static/js/map.js"></script>     <!-- File per il backend della mappa -->
-  <script src="/static/js/misc.js"></script>    <!-- File a parte per animazioni ecc. -->
+<div id="map"></div>
+<div id="basemaps-wrapper" class="leaflet-bar">
+    <select name="basemaps" id="basemaps" onChange="changeBasemap(basemaps)">
+        <option value="ImageryFirefly"> Satellite </option>
+        <option value="Topographic"> Topografica </option>
+        <option value="Streets"> Streets </option>
+        <option value="NationalGeographic"> National Geographic </option>
+        <option value="ShadedRelief"> Rilievi </option>
+    </select>
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="/static/js/map.js"></script> <!-- File JS per il backend della mappa -->
+<script src="/static/js/misc.js"></script> <!-- File JS per il frontend della mappa -->
 {% endblock %}

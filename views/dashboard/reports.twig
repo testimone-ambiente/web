@@ -14,7 +14,7 @@
         {% for report in ten %}
 
           <div class="item">
-            <span class="item-label"> {{report.report_title}} </span> - segnalata il {{report.readable_date}} {% if report.user %} da <a href="/dashboard/user/{{report.user_id}}"> {{report.user.name}} {{report.user.surname}} </a> {% else %} <i> segnalazione anonima </i> {% endif %}
+            <span class="item-label"> {{report.report_title}} </span> - segnalata {% if report.user %} da <a href="/dashboard/user/{{report.user_id}}"> {{report.user.name}} {{report.user.surname}} </a> {% else %} <i> segnalazione anonima </i> {% endif %}
             <a href="/dashboard/report/{{report.report_id}}"><span class="right"> <span>Visualizza <i class="fas fa-arrow-right"></i></span></span></a>
           </div>
 
@@ -32,8 +32,8 @@
     $(`
 
     <div class="item" style="display: none">
-      <span class="item-label"> ${report.report_title} </span> - segnalata il ${report.readable_date} da <a href="/dashboard/user/${report.user_id}"> ${report.user.name} ${report.user.surname} </a>
-      <a href="/report/${report.report_id}"><span class="right"> <span>Visualizza <i class="fas fa-arrow-right"></i></span></span></a>
+      <span class="item-label"> ${report.report_title} </span> - segnalata da <a href="/dashboard/user/${report.user_id}"> ${report.user.name} ${report.user.surname} </a>
+      <a href="/dashboard/report/${report.report_id}"><span class="right"> <span>Visualizza <i class="fas fa-arrow-right"></i></span></span></a>
     </div>
 
     `).prependTo('#reports').slideDown();
@@ -41,8 +41,8 @@
     $(`
 
     <div class="item" style="display: none">
-      <span class="item-label"> ${report.report_title} </span> - segnalata il ${report.readable_date} <i>Segnalazione anonima</i>
-      <a href="/report/${report.report_id}"><span class="right"> <span>Visualizza <i class="fas fa-arrow-right"></i></span></span></a>
+      <span class="item-label"> ${report.report_title} </span> - <i>Segnalazione anonima</i>
+      <a href="/dashboard/report/${report.report_id}"><span class="right"> <span>Visualizza <i class="fas fa-arrow-right"></i></span></span></a>
     </div>
 
     `).prependTo('#reports').slideDown();

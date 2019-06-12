@@ -1,0 +1,41 @@
+{% extends "layouts/report_layout.twig" %}
+{% block head %}
+<style>
+  h3{
+    font-weight: lighter;
+  }
+  p{
+    font-weight: lighter;
+  }
+  p a{
+    font-size: 1em;
+    color: #1e90ff;
+    text-decoration: none;
+    border-bottom: 2px solid #1e90ff;
+    font-weight: normal;
+  }
+  .button{
+    padding: 15px;
+    background: #212121;
+    color: white;
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 800px){
+    .container .report .half{
+      width: 100%;
+    }
+  }
+</style>
+{% endblock %}
+{% block body %}
+  <div class="container" style="text-align: center;">
+    <div class="report">
+      <div class="half">
+        <h1 id="title"> Download </h1>
+        <h3>Scarica l'app di Mountain Wilderness</h3>
+        <a href="/uploads/app.apk" style="color: white; text-decoration: none"><div class="button"> Download </div></a>
+      </div>
+  </div>
+{% endblock %}

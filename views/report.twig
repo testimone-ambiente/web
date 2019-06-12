@@ -15,50 +15,13 @@
       <div class="half eh">
         <h1 id="title"> {{report.report_title}} </h1>
         <ul>
-          {% if report.user_id %}
-
-            <li> Segnalata da: <a href="/user/{{report.user_id}}"> {{report.report_name}} </a> </li>
-            {% else %}
-            <li> <b>La segnalazione è anonima</b> </li>
-
-          {% endif %}
           <li> <i class="fas fa-globe"></i> {{report.report_state}} </li>
-          <!--<li> <i class="far fa-building"></i> Milano </li>-->
-          <!--<li> <i class="fas fa-map-pin"></i> Via Verona 18 </li>-->
           <li> <i class="fas fa-compass"></i>  {{report.report_latitude}}, {{report.report_longitude}} </li>
           <li> <i class="fas fa-calendar"></i> {{report.report_date}} </li>
         </ul>
         <div id="map" style="width: 100%; height: 30vh; margin: 0 auto;"></div>
       </div>
-      <div class="full">
-
-        {% if images %}
-        <div class="carousel owl-theme" style="width: 100%; height: 30vh;">
-
-          {% for image in images %}
-
-            <img src="/uploads/{{id}}/{{image}}" style="max-width: 100%; max-height: 100%;">
-            <img src="/uploads/{{id}}/{{image}}" style="max-width: 100%; max-height: 100%;">
-
-          {% endfor %}
-
-        </div>
-        {% endif %}
-
-        <script>
-
-          $('.carousel').owlCarousel({
-            loop:true,
-            nav:true,
-            responsive:{
-              1000:{
-                items: 1
-              }
-            }
-          })
-        </script>
-      </div>
-      <div class="full">
+      <div class="full" style="margin-top: -200px;">
         <p>
           {{report.report_description}}
         </p>

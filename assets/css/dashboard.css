@@ -188,12 +188,16 @@ ul a{
   border-radius: 4px;
   color: white;
 }
-.dashboard .content .brief span{
+.dashboard .content .brief span:not(.i):not(.q){
   display: block;
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 2.4em;
   font-weight: 400;
+}
+.dashboard .content .brief span.light{
+  font-size: 1.4em;
+  font-weight: lighter;
 }
 .dashboard .content .brief p{
   padding: 20px;
@@ -205,11 +209,41 @@ ul a{
 }
 .dashboard .fancy-list .item{
   width: 100%;
-  height: 50px;
+  min-height: 50px;
   width: 100%;
   line-height: 50px;
   color: white;
   border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.dashboard .fancy-list .item.dropdown{
+  line-height: normal;
+}
+.dashboard .fancy-list .item.dropdown .inner{
+  height: 50px; line-height: 50px; width: 100%;
+}
+.dashboard .fancy-list .item.dropdown .drop-content{
+  margin-left: 20px;
+  display: none;
+}
+input.setting{
+  width: 350px;
+  background: rgba(255,255,255,0.1);
+  outline: none;
+  color: white;
+  display: block;
+  border: none;
+  height: 50px;
+  margin-bottom: 20px;
+  text-indent: 20px;
+  font-size: 1em;
+}
+.settings{
+  margin-left: 30px;
+  padding-bottom: 30px !important;
+}
+.flexbox{
+  display: flex;
+  align-items: flex-start;
 }
 .dashboard .fancy-list .item .item-label{
   font-weight: bold;
@@ -221,11 +255,12 @@ ul a{
 }
 .dashboard .fancy-list .item .right{
   float: right;
+  cursor: pointer;
   position: relative;
   text-align: center;
   text-indent: 20px;
 }
-.dashboard .fancy-list .item .right:after{
+.dashboard .fancy-list .item .right:not(.d):after{
   width: 0%;
   height: 100%;
   background: #fff;
@@ -242,6 +277,8 @@ ul a{
 .dashboard .fancy-list .item .right i{
   margin-left: 20px;
   margin-right: 20px;
+  text-align: center;
+  text-indent: 0 !important;
 }
 .dashboard .fancy-list .item .right span{
   position: relative;

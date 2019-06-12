@@ -1,0 +1,116 @@
+{% extends "dashboard/layout.twig" %}
+{% block head %}
+  {{parent()}}
+  <script src="/static/js/count.js"></script>
+{% endblock %}
+{% block content %}
+
+  <div class="content">
+
+      <h1> Impostazioni </h1>
+      <div class="brief">
+        <p>
+          Qui potrai modificare le impostazioni globali (e non) del pannello di controllo.<br><br>
+          {% if user.uber_admin %}
+            <i> Importante: sei loggato con un account <b>superuser</b>, significa quindi che ha tutti i permessi per modificare qualsiasi impostazione sul pannello. <br>
+              Usa questo potere con la dovuta responsabilità.</i>
+          {% endif %}
+          <span class="light"> Account ({{user.username}}) </span>
+          </p>
+          <div class="fancy-list" style="margin-left: 30px; margin-top: -40px;">
+              <div class="item dropdown">
+                <div class="inner">
+                  <span class="item-label i"> Modifica username </span>
+                  <span class="right i d"> <i class="fas fa-chevron-down"></i> </span>
+                </div>
+                <div class="drop-content">
+                  <input id="new-username" class="setting" type="text" placeholder="Nuovo username">
+                </div>
+              </div>
+              <div class="item dropdown">
+                <div class="inner">
+                  <span class="item-label i"> Modifica password </span>
+                  <span class="right i d"> <i class="fas fa-chevron-down"></i> </span>
+                </div>
+                <div class="drop-content">
+                  <input id="now-password" class="setting" type="password" placeholder="Password corrente">
+                  <input id="new-password" class="setting" type="password" placeholder="Nuova password">
+                  <input id="new-again-password" class="setting" type="password" placeholder="Conferma nuova password">
+                </div>
+              </div>
+          </div>
+          <button id="account" style="margin-left: 30px;" class="classy"> <span class="q"> Applica modifiche </span> </button>
+          {% if user.uber_admin %}
+
+            <p>
+              <span class="light"> Crea un nuovo account </span>
+            </p>
+            <div class="flexbox">
+              <form class="settings">
+                <input type="text" class="setting" placeholder="Username" id="username">
+                <input type="password" class="setting" placeholder="Password" id="password">
+                <input type="text" class="setting" placeholder="Conferma password" id="conf-password">
+                <button id="new-profile" class="classy"> <span class="q"> Applica modifiche </span> </button>
+              </form>
+              <div class="fancy-list" style="margin-left: 30px; margin-right: 30px; max-height: 400px; overflow: auto;">
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+                <div class="item">
+                  <span class="item-label i"> Account 1 </span>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+      </div>
+  </div>
+
+  <script>
+
+    $(".right.i.d").on('click', e => {
+
+      var item = $(e.currentTarget).parent().parent().find(".drop-content");
+      var icon = $(e.currentTarget).parent().parent().find("i");
+
+      if(!$(item).hasClass("selected")){
+        $(item).slideDown();
+        icon.css({"transform": "rotate(180deg)"})
+        $(item).addClass("selected")
+      }else{
+        $(item).slideUp();
+        icon.css({"transform": "rotate(0deg)"})
+        $(item).removeClass("selected")
+      }
+
+    })
+
+  </script>
+
+{% endblock %}
