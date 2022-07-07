@@ -26,7 +26,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "helmet": "^3.15.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-with-locales-es6": "^1.0.1",
     "mysql": "^2.16.0",
     "nodemailer": "^5.1.1",
